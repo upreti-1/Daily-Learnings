@@ -61,4 +61,4 @@ pip install numpy pandas seaborn matplotlib scikit-learn imblearn
 Run the Notebooks:
 Open the files in Jupyter Lab, Jupyter Notebook, or VS Code to explore the code and visualizations.
 
-# Author: **Prashant Upreti**
+Author: **Prashant Upreti**
