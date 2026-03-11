@@ -1,0 +1,105 @@
+# Building URL Dynamically
+# Variable Rule
+# Jinga2 Template Engine
+
+
+# Jinga2 Template Engine
+'''
+{{  }} expression to print output in html
+{%....%}  conditions, for loops
+{#...#}  this is for comments
+'''
+
+
+# how to integrate HTML file in this web framework
+
+from flask import Flask, render_template, request, redirect, url_for
+
+app = Flask(__name__)
+
+@app.route('/')
+def welcome():
+    return "<html><H1>Welcome to the flask course</H1></html>"
+
+@app.route("/index", methods = ['GET'])
+def index():
+    return render_template('index.html')        #redirects to index.html
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+@app.route('/form', methods = ['GET', 'POST'])
+def form():
+    if request.method == "POST":
+        name = request.form['name']
+        return f'Hello {name}!'
+    return render_template('form.html')
+
+# @app.route('/submit', methods = ['GET', 'POST'])
+# def submit():
+#     if request.method == "POST":
+#         name = request.form['name']
+#         return f'Hello {name}!'
+#     return render_template('form.html')
+
+
+# Variable rule
+@app.route('/success/<int:score>')
+def success(score):
+    return f"The marks you got is : {score}"
+
+# using jinga2 template engine
+@app.route('/result/<int:score>')
+def result(score):
+    result = ''
+    if score >= 50:
+        result = 'PASS'
+    else:
+        result = 'FAIL'
+
+    return render_template('result.html', results = result)
+
+
+@app.route('/success_results/<int:score>')
+def success_results(score):
+    res = ''
+    if score >= 50:
+        res = "PASS"
+    else:
+        res = "FAIL"
+
+    exp = {'scored': score, 'result' : res}
+    return render_template('result1.html', results = exp)
+
+
+@app.route('/successif/<int:score>')
+def resultif(score):
+    return render_template('result.html', results = score)
+
+# creating dynamic URL
+@app.route('/fail/<int:score>')
+def fail(score):
+    return render_template('result.html', results = score)
+
+@app.route('/submit', methods = ['POST', 'GET'])
+def submit():
+    total_score = 0
+    if request.method == 'POST':
+        science = float(request.form['science'])
+        maths = float(request.form['maths'])
+        c = float(request.form['c'])
+        data_science = float(request.form['datascience'])
+
+        total_score = (science + maths + c + data_science)/4
+
+    else:
+        return render_template('getresult.html')
+    return redirect(url_for('success_results', score = total_score))
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
