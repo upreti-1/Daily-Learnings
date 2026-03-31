@@ -1,61 +1,42 @@
-# K-Nearest Neighbours (KNN) Classifier
+# K Nearest Neighbors Classifier
 
-## Overview
-This folder contains a comprehensive implementation and guide for the K-Nearest Neighbours (KNN) classification algorithm. KNN is a simple yet powerful supervised learning algorithm used for classification and regression tasks.
+This folder contains a notebook that builds and tunes a KNN classifier for a binary classification task.
 
-## Contents
-- **KNN classifier.ipynb** - A detailed Jupyter notebook covering KNN implementation and hyperparameter tuning
+## Files
 
-## Key Concepts Covered
+- `KNN classifier.ipynb`: End-to-end KNN workflow from data generation to model evaluation.
 
-### 1. **Dataset Preparation**
-   - Creating synthetic classification datasets using `sklearn.datasets.make_classification`
-   - Understanding data structure and features
+## What the Notebook Covers
 
-### 2. **Train-Test Split**
-   - Splitting data into training (70%) and testing (30%) sets
-   - Using `sklearn.model_selection.train_test_split` for reproducible splits
+1. Importing core libraries (`pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`)
+2. Creating a synthetic dataset using `make_classification`
+3. Splitting data into train and test sets
+4. Training a baseline `KNeighborsClassifier`
+5. Evaluating with:
+   - Accuracy score
+   - Confusion matrix
+   - Classification report
+6. Hyperparameter tuning with `GridSearchCV` for:
+   - `n_neighbors`
+   - `weights`
+   - `metric`
+7. Re-evaluating predictions using the tuned model
 
-### 3. **KNN Model Implementation**
-   - Building a KNN classifier with configurable hyperparameters
-   - Training the model on training data
-   - Making predictions on test data
+## Requirements
 
-### 4. **Model Evaluation**
-   - **Accuracy Score**: Overall correctness of predictions
-   - **Confusion Matrix**: True positives, true negatives, false positives, false negatives
-   - **Classification Report**: Precision, recall, and F1-score metrics
+Install dependencies:
 
-### 5. **Hyperparameter Tuning**
-   - Using `GridSearchCV` for exhaustive parameter search
-   - Tuning key hyperparameters:
-     - **n_neighbors**: Number of nearest neighbours (3, 5, 7, 9, 11, 15)
-     - **weights**: Weight function - 'uniform' or 'distance'
-     - **metric**: Distance metric - 'euclidean', 'manhattan', or 'minkowski'
-   - Finding optimal parameters for best accuracy
-
-## Libraries Used
-- **pandas**: Data manipulation and analysis
-- **numpy**: Numerical computations
-- **matplotlib**: Data visualization
-- **seaborn**: Statistical graphics
-- **scikit-learn**: Machine learning algorithms and utilities
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+```
 
 ## How to Run
-1. Open the notebook: `KNN classifier.ipynb`
-2. Execute cells sequentially to understand each step
-3. Modify hyperparameters to experiment with different configurations
-4. Observe how parameter tuning affects model performance
 
-## Key Takeaways
-- KNN is a distance-based algorithm that classifies data based on proximity to nearest neighbours
-- The choice of `k` (number of neighbours) significantly impacts model performance
-- Distance metrics and weight functions can be tuned for optimal results
-- GridSearchCV helps automate the hyperparameter tuning process
-- Always evaluate models on a separate test set to assess generalization
+1. Open this folder in VS Code.
+2. Open `KNN classifier.ipynb`.
+3. Run cells from top to bottom.
+4. Check printed metrics before and after GridSearchCV to compare performance.
 
-## Next Steps
-- Experiment with different values of k
-- Try various distance metrics
-- Apply KNN to real-world datasets
-- Compare KNN performance with other classification algorithms
+## Learning Outcome
+
+You will understand how KNN works, why choosing the right `k` matters, and how grid search improves model selection through systematic tuning.
